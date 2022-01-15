@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css')}}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Beastly&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Iris Flower Type Prediction</h1>
+    <div class="main">
+        <div class="form-div">
+            <form method="POST" action="{{ url_for('predict') }}">
+                <h3>Flower Details</h3>
+                <label>Sepal Length</label>
+                <input type="text" name="sepallength" />
+
+                <label>Sepal Width</label>
+                <input type="text" name="sepalwidth"/>
+
+                <label>Petal Length</label>
+                <input type="text" name="petallength"/>
+
+                <label>Petal Width</label>
+                <input type="text" name="petalwidth"/>
+
+                <input type="submit" value="Predict"/>
+            </form>
+        </div>
+
+        {% if prediction == 'Iris-setosa' %}
+        <div class="image-div">
+            <img src="../static/setosa.jpg" width="650" height="450"/>
+            <h4>Your Predicted flower type is: <em>{{prediction.item()}}</em></h4>
+        </div>
+
+        {% elif prediction == 'Iris-virginica' %}
+        <div class="image-div">
+            <img src="../static/virginica.jpg" width="650" height="450"/>
+            <h4>Your Predicted flower type is: <em>{{prediction.item()}}</em></h4>
+        </div>
+        
+        {% elif prediction == 'Iris-versicolor' %}
+        <div class="image-div">
+            <img src="../static/versicolor.jpg" width="650" height="450"/>
+            <h4>Your Predicted flower type is: <em>{{prediction.item()}}</em></h4>
+        </div>
+
+        {%else%}
+        <div class="image-div">
+            <img src="../static/all.jpg" width="650" height="450"/>
+            <h4>You need to make a prediction</h4>
+        </div>
+
+        {% endif %}
+    </div>
+</body>
+</html>
