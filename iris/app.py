@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, url_for
 import numpy as np
 import pickle
 
-model = pickle.load(open(".\decisiontreeclassifier.pkl", "rb"))
+model = pickle.load(open("./decisiontreeclassifier.pkl", "rb"))
 
 app = Flask(__name__)
 
